@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'bulma/css/bulma.css';
 import Navbar from './Navbar';
-import HeroSection from './HeroSection';
 
 class App extends Component {
 
@@ -9,7 +8,6 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <HeroSection />
       </div>
     )
   }
