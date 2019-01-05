@@ -18,7 +18,6 @@ class Login extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        console.log(this.state.credentials);
         this.props.loginUser(this.state.credentials);
     }
 
@@ -44,8 +43,8 @@ class Login extends Component {
             <section className="section is-medium">
                 <div className="container">
                     <h1 className="title">Please login using the form below.</h1>
-                    <div className="columns ">
-                        <div className="column is-one-quarter ">
+                    <div className="columns">
+                        <div className="column is-one-quarter">
                             <div className="field">
                                 <label className="label">E-mail</label>
                                 <div className="control">
@@ -76,4 +75,4 @@ const mapStateToProps = (state) => ({
     errors: state.errors
 })
 
-export  default connect(mapStateToProps, { loginUser })(Login)
+export default connect(mapStateToProps, { loginUser })(Login)

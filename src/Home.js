@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import HeroSection from './HeroSection';
+import SearchSection from './SearchSection';
 
 class Home extends Component {
     render() {
         return (
-            <HeroSection />
+            <div>
+                <HeroSection />
+                <SearchSection />
+            </div>
         )
     }
 }
