@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
+import SearchPage from './SearchPage';
 
 class Navbar extends Component {
     render() {
@@ -53,6 +54,7 @@ class Navbar extends Component {
                     <Route path="/" exact component={Home} />
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Register} />
+                    <Route path="/search" component={SearchPage} />
                 </div>
             </Router>
         )
