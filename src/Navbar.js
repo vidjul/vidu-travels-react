@@ -5,6 +5,8 @@ import Home from './Home';
 import Login from './Login';
 import Register from './Register';
 import SearchPage from './SearchPage';
+import Dashboard from './Dashboard';
+import AdminDashboard from './AdminDashboard';
 
 class Navbar extends Component {
     render() {
@@ -21,6 +23,18 @@ class Navbar extends Component {
                 </div>
             </div>
         );
+
+        const authItems = (
+            <div className="navbar-item">
+                <Link to='/dashboard'>Dashboard</Link>
+            </div>
+        )
+
+        const authAdminItems = (
+            <div className="navbar-item">
+                <Link to='/admin/dashboard'>Admin Dashboard</Link>
+            </div>
+        )
 
         const authTrueButtons = (
             <div className="navbar-item">
@@ -45,6 +59,8 @@ class Navbar extends Component {
                             <div className="navbar-item">
                                 <Link to="/">Home</Link>
                             </div>
+                            {this.props.auth.isAuthenticated && !this.props.auth.user.isAdmin ? authItems : null}
+                            {this.props.auth.isAuthenticated && this.props.auth.user.isAdmin ? authAdminItems : null}
                         </div>
                         <div className="navbar-end">
                             {this.props.auth.isAuthenticated ? authTrueButtons : nonAuthButtons}
@@ -55,6 +71,8 @@ class Navbar extends Component {
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Register} />
                     <Route path="/search" component={SearchPage} />
+                    <Route path='/dashboard' component={Dashboard} />
+                    <Route path='/admin/dashboard' component={AdminDashboard} />
                 </div>
             </Router>
         )

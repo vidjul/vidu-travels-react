@@ -129,6 +129,18 @@ class SearchPage extends Component {
         //     "Price": 2801.33
         // };
         // const dataList = [data, data];
+        if (this.props.location.state.itineraries.length === 0) {
+            return (
+                <article className="message is-danger">
+                    <div className="message-header">
+                        <p>Error</p>
+                    </div>
+                    <div className="message-body">
+                        No flights were found for your search. Please try again later.
+                    </div>
+                </article>
+            )
+        }
         const boxes = this.props.location.state.itineraries.map((data, index) => <ItineraryBox Itinerary={data} key={index} />)
         return (
             <section className="section">

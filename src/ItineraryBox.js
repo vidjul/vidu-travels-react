@@ -14,8 +14,8 @@ class ItineraryBox extends Component {
         const returningOriginCode = this.props.Itinerary.Return.Path[0].Origin.Code;
         const returningDestinationCode = this.props.Itinerary.Return.Path[returningPathLength - 1].Destination.Code;
         const returningDepartureTime = this.props.Itinerary.Return.Path[0].Departure;
-        const returningArrivalTime = this.props.Itinerary.Return.Path[departPathLength - 1].Arrival;
-        const returnCarrierImage = this.props.Itinerary.Depart.Path[departPathLength - 1].Carrier.ImageUrl;
+        const returningArrivalTime = this.props.Itinerary.Return.Path[returningPathLength - 1].Arrival;
+        const returnCarrierImage = this.props.Itinerary.Return.Path[returningPathLength - 1].Carrier.ImageUrl;
 
         const price = this.props.Itinerary.Price;
 
