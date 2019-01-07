@@ -19,9 +19,7 @@ class ItineraryBox extends Component {
 
         const price = this.props.Itinerary.Price;
 
-
-
-        return (
+        return ( 
             <div className="box">
                 <p>Departure on {moment(departureDepartTime).format('L')}</p>
                 <div className="columns is-vcentered">

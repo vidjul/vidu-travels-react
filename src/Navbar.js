@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
-import Home from './Home';
-import Login from './Login';
-import Register from './Register';
-import SearchPage from './SearchPage';
-import Dashboard from './Dashboard';
-import AdminDashboard from './AdminDashboard';
+import { logoutUser } from './actions/authentication';
 
 class Navbar extends Component {
     render() {
@@ -39,15 +34,12 @@ class Navbar extends Component {
         const authTrueButtons = (
             <div className="navbar-item">
                 <div className="buttons">
-                    <Link to="/logout" className="button is-light">
-                        Log out
-                            </Link>
+                    <button onClick={() => this.props.logoutUser(this.props.history)} className="button is-light">Log out</button>
                 </div>
             </div>
         )
 
         return (
-            <Router>
                 <div>
                     <nav className="navbar has-shadow">
                         <div className="navbar-brand">
@@ -59,22 +51,14 @@ class Navbar extends Component {
                             <div className="navbar-item">
                                 <Link to="/">Home</Link>
                             </div>
-                            {this.props.auth.isAuthenticated && !this.props.auth.user.isAdmin ? authItems : null}
-                            {this.props.auth.isAuthenticated && this.props.auth.user.isAdmin ? authAdminItems : null}
+                            {this.props.auth.isAuthenticated && this.props.auth.user.isAdmin === 'false' ? authItems : null}
+                            {this.props.auth.isAuthenticated && this.props.auth.user.isAdmin === 'true' ? authAdminItems : null}
                         </div>
                         <div className="navbar-end">
                             {this.props.auth.isAuthenticated ? authTrueButtons : nonAuthButtons}
                         </div>
                     </nav>
-
-                    <Route path="/" exact component={Home} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/signup" component={Register} />
-                    <Route path="/search" component={SearchPage} />
-                    <Route path='/dashboard' component={Dashboard} />
-                    <Route path='/admin/dashboard' component={AdminDashboard} />
                 </div>
-            </Router>
         )
     }
 }
@@ -83,4 +67,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth,
 })
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { logoutUser })(withRouter(Navbar));

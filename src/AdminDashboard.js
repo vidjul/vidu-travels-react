@@ -12,7 +12,7 @@ class AdminDashboard extends Component {
     }
 
     componentDidMount() {
-        if (!this.props.auth.isAuthenticated && !this.props.auth.user.isAdmin) {
+        if (!this.props.auth.isAuthenticated || this.props.auth.user.isAdmin === 'false') {
             this.props.history.push('/login');
         }
         axios.get('/api/admin/listUsers')
@@ -21,7 +21,7 @@ class AdminDashboard extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!nextProps.auth.isAuthenticated && !this.props.auth.user.isAdmin) {
+        if (!nextProps.auth.isAuthenticated && this.props.auth.user.isAdmin === 'true') {
             this.props.history.push('/login')
         }
     }
